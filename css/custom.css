@@ -1,0 +1,251 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+@font-face {
+  font-family: "digital";
+  src: url('font/digital-7.regular.ttf');
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.logo-s {
+  height: 20px;
+  width: 20px;
+}
+
+.logo-m {
+  height: 30px;
+  width: 30px;
+}
+
+.logo-l {
+  height: 40px;
+  width: 40px;
+}
+
+.logo-xl {
+  height: 50px;
+  width: 50px;
+}
+
+.logo-xxl {
+  height: 60px;
+  width: 60px;
+}
+
+.logo-black {
+    background-image: url("logo/logo-black.png");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+.logo-white {
+    background-image: url("logo/logo-white.png");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+.logo-blue {
+    background-image: url("logo/logo-blue.png");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+.logo-bordeaux {
+    background-image: url("logo/logo-bordeaux.png");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+.logo-darkblue {
+    background-image: url("logo/logo-darkblue.png");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+.logo-darkgreen {
+    background-image: url("logo/logo-darkgreen.png");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+.logo-green {
+    background-image: url("logo/logo-green.png");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+.logo-lightblue {
+    background-image: url("logo/logo-lightblue.png");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+.logo-marine {
+    background-image: url("logo/logo-marine.png");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+.logo-pink {
+    background-image: url("logo/logo-pink.png");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+.logo-purple {
+    background-image: url("logo/logo-purple.png");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+.logo-red {
+    background-image: url("logo/logo-red.png");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+.logo-yellow {
+    background-image: url("logo/logo-yellow.png");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+
+.zonnig {
+  background-image: url("img/zonnig.jpg");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+
+.bewolkt {
+  background-image: url("img/bewolkt.jpg");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+
+.bliksem {
+  background-image: url("img/bliksem.jpg");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+
+.buien {
+  background-image: url("img/buien.jpg");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+
+.hagel {
+  background-image: url("img/hagel.jpg");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+.helderenacht {
+  background-image: url("img/helderenacht.jpg");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+
+.nachtmist {
+  background-image: url("img/nachtmist.jpg");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+.wolkennacht {
+  background-image: url("img/wolkennacht.jpg");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+.zwaarbewolkt {
+  background-image: url("img/zwaarbewolkt.jpg");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+.halfbewolkt {
+  background-image: url("img/halfbewolkt.jpg");
+    background-position: center;
+    background-size: cover;
+  display: inline-block;
+}
+.sunrise {
+  background-image: url("img/sunrise.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  display: inline-block;
+}
+.sunset {
+  background-image: url("img/sunset.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  display: inline-block;
+}
+
+.moon-new {
+  background-image: url("img/new moon.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  display: inline-block;
+}
+.moon-full {
+  background-image: url("img/full moon.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+  display: inline-block;
+}
+.moon-first-quarter {
+  background-image: url("img/first quarter.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  display: inline-block;
+}
+.moon-third-quarter {
+  background-image: url("img/third quarter.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  display: inline-block;
+}
+.moon-waxing-crescent {
+  background-image: url("img/waxing crescent.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  display: inline-block;
+}
+.moon-waning-crescent {
+  background-image: url("img/waning crescent.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  display: inline-block;
+}
+.moon-waxing-gibbous {
+  background-image: url("img/waxing gibbous.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  display: inline-block;
+}
+.moon-waning-gibbous {
+  background-image: url("img/waning gibbous.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  display: inline-block;
+}
+.bg-nightsky {
+  background-image: url("img/nightsky.jpg");
+  background-size: cover;
+  display: inline-block;
+}
