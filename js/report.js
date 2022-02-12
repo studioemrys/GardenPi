@@ -1,11 +1,10 @@
 var report = {
-	url: 'http://192.168.0.170:5050',
 	log: function(book, rules) {
 		var msg = {
 			device: "log",
 			book: book
 		};
-		$.post(report.url, msg)
+		$.post(config.localUrl, msg)
 		.done(function(response) {
 			lines = response.split("\n");
 			lastLines = lines.slice(rules);

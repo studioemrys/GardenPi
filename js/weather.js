@@ -1,5 +1,4 @@
 var weatherStation = {
-	city: "",
 	icon: function(input) {
 		switch (input) {
 			case "zonnig":
@@ -209,7 +208,7 @@ var weatherStation = {
 		d2 = d2.getDate()+"-"+(today.getMonth()+1);
 		moonphase = weatherStation.moon(today.getDate(),today.getMonth()+1,today.getFullYear());
 
-		$.get('https://weerlive.nl/api/json-data-10min.php?key=3533d3d684&locatie='+weatherStation.city, function(response) {
+		$.get(config.weerOnlineURL+config.weerOnlineLocation, function(response) {
 			$('#weather-display-city').html(response.liveweer[0].plaats); 
 			$('#weather-display-wind').html(response.liveweer[0].windr+" "+response.liveweer[0].winds);
 			$('#weather-display-temperature').html(response.liveweer[0].temp+" °C");

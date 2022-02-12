@@ -9,7 +9,12 @@ const fs = require('fs');
 const nodemailer = require('nodemailer');
 const Milight = require('node-milight-promise');
 const commands = Milight.commandsV6;
-const settings = JSON.parse(fs.readFileSync('./settings.json'));
+
+const config = require('./config/config.js');
+const syncs = JSON.parse(fs.readFileSync('./json/sync.json'));
+const lamps = JSON.parse(fs.readFileSync('./json/light.json'));
+
+console.log(config.port);
 
 var hermes = {
 	log: function(book, input) {
@@ -31,7 +36,7 @@ var hermes = {
 }
 
 var led = new Milight.MilightController({
-    ip: settings.milightIP,
+    ip: config.milightIP,
     type: 'v6'
   });
 
@@ -75,7 +80,7 @@ var daytimeSync = {
 	sunset: new Date(),
 	get: function(callback) {
 		
-		https.get('https://data.buienradar.nl/2.0/feed/json', function(data){
+		https.get(service.buienRadarURL, function(data){
 			hermes.log('light','Loading sunrise and sunset data...');
 			body = '';
 			data.on('data', function(chunk) {
@@ -94,8 +99,6 @@ var daytimeSync = {
 		});
 	},
 	set: function() {
-		syncs = fs.readFileSync('./json/sync.json');
-		syncs = JSON.parse(syncs);
 		hermes.log('light','Garden lights synced with sunrise and sunset');
 		for (zone in syncs) {
 			
@@ -161,8 +164,6 @@ var daytimeSync = {
 		}
 	},
 	change: function(zone, action) {
-		syncs = fs.readFileSync('./json/sync.json');
-		syncs = JSON.parse(syncs);
 		syncs[zone]['action'] = action;
 		fs.writeFileSync('./json/sync.json', JSON.stringify(syncs));
 		hermes.log('light','daytime sync for zone '+zone+' written to sync.json');
@@ -171,8 +172,6 @@ var daytimeSync = {
 
 var light = {
 	set: function(zone, action) {
-		lamps = fs.readFileSync('./json/light.json');
-		lamps = JSON.parse(lamps);
 	    if (Number(action)) {
 	    	lighting2.switchOn(lamps[zone]['id']);
 			hermes.log('light','RFXcom switch on '+zone);
@@ -183,8 +182,6 @@ var light = {
 	    }
 	},
 	change: function(zone, action) {
-		lamps = fs.readFileSync('./json/light.json');
-		lamps = JSON.parse(lamps);
 		lamps[zone]['action'] = action;
 		fs.writeFileSync('./json/light.json', JSON.stringify(lamps));
 		hermes.log('light','wrote lamp positions to sync.json');
@@ -207,7 +204,7 @@ var weather = {
 		fs.writeFileSync('./json/weather.json', JSON.stringify(weather.dataBase));
 	},
 	scrapeRainFall: function(callback1, callback2, callback3) {
-		https.get(settings.buienRadarURL, function(scrape) {
+		https.get(config.buienRadarURL, function(scrape) {
 			body = '';
 			scrape.on('data', function(chunk) {
 				body += chunk;
@@ -225,7 +222,7 @@ var weather = {
 		});
 	},
 	scrapeMaxTemperature: function(callback2, callback3) {
-		https.get(settings.weerOnlineURL, function(scrape) {
+		https.get(config.weerOnlineURL, function(scrape) {
 			body = '';
 			scrape.on('data', function(chunk) {
 				body += chunk;
@@ -266,9 +263,9 @@ var weather = {
 }
 
 var sprinkler = {
-	sprinkleDay1: Number(settings.sprinkleDay1),
-	sprinkleDay2: Number(settings.sprinkleDay2),
-	rainChanceThreshold: Number(settings.rainChanceThreshold),
+	sprinkleDay1: Number(config.sprinkleDay1),
+	sprinkleDay2: Number(config.sprinkleDay2),
+	rainChanceThreshold: Number(config.rainChanceThreshold),
 	weather: "",
 	loadWeather: function() {
 		weather = fs.readFileSync("./json/weather.json");
@@ -544,10 +541,11 @@ hermes.log('app','DEBLINDOMOTIX BOOTING')
 //Start the express framework
 app = express();
 //Load the webapp at port 5050
-app.listen(Number(settings.port), function() {
-	hermes.log('app',"DeblinDomotix webserver running on "+settings.localhost+" @ port "+settings.port);
+app.listen(config.port, function() {
+	hermes.log('app',"DeblinDomotix webserver running on "+config.localhost+" @ port "+config.port);
 });
 //Serve all webcontent
+app.use(express.static('config'));
 app.use(express.static('js'));
 app.use(express.static('css'));
 app.use(express.static('icon'));
@@ -579,7 +577,7 @@ rfxtrx.initialise(function() {
 	hermes.log('sprinkler','Initialising Smart Sprinkling System...');
 	hermes.log('sprinkler','Smart Sprinkling System will run @ 6:00');
 	schedule.scheduleJob('weatherScrape','0 6 * * *', function() {
-		weather.region = settings.region;
+		weather.region = config.region;
 		weather.scrapeRainFall(weather.scrapeMaxTemperature, weather.upDateWeatherDataBase, sprinkler.run);
 	});
 

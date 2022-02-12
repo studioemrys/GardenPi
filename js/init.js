@@ -8,7 +8,6 @@ $(document).ready(function() {
 	//Initialise functions
 	time.date();
 	time.sun();
-	weatherStation.city = 'Nuenen';
 	weatherStation.load();
 	time.clock();
 	weatherStation.start();

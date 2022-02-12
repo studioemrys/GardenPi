@@ -5,8 +5,8 @@ var time = {
 	rawTime: '',
 	date: function() {
 		rawDate = new Date();
-		date = rawDate.getDate()+"-"+(rawDate.getMonth()+1)+"-"+rawDate.getFullYear();
-		$('#date-display').html(date);
+		html = rawDate.getDate()+"-"+(rawDate.getMonth()+1)+"-"+rawDate.getFullYear();
+		$('#date-display').html(html);
 	},
 	loadTime: function() {
 		rawDate = new Date();
@@ -17,7 +17,7 @@ var time = {
 		setInterval(function() {time.loadTime()}, 60);
 	},
 	sun: function() {
-		jQuery.get('https://data.buienradar.nl/2.0/feed/json', function(response) {
+		jQuery.get(config.buienRadarURL, function(response) {
 			$('#time-sunrise').html(response.actual.sunrise.substring(11, 16)); 
 			$('#time-sunset').html(response.actual.sunset.substring(11, 16));
 		});
