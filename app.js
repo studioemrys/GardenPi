@@ -80,7 +80,7 @@ var daytimeSync = {
 	sunset: new Date(),
 	get: function(callback) {
 		
-		https.get(service.buienRadarURL, function(data){
+		https.get(config.buienRadarURL, function(data){
 			hermes.log('light','Loading sunrise and sunset data...');
 			body = '';
 			data.on('data', function(chunk) {
